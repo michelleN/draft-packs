@@ -19,17 +19,6 @@ spec:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        env:
-          - name: MYSQL_USER
-            value: root
-          - name: MYSQL_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: zeroed-bison-mysql
-                key: mysql-root-password
-          - name: MYSQL_HOST
-            value: "{{.Values.mysql.host}}"
-
         ports:
         - containerPort: {{ .Values.service.internalPort }}
         resources:
